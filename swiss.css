@@ -40,44 +40,25 @@ body{
   margin: 0;
   font-size: 0.75rem;
 }
- */
+ 
 .info .details {
   font-family: 'Merriweather', serif;
-  font-size: 1.25rem; 
   line-height: 1.7;
   color: #222;
   margin-top: 8px;
+  font-size: larger;
 }
 
 
 .info .sub {
   font-family: 'Merriweather', serif;
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 28px;
   margin-bottom: 6px;
 }
 
-.gallery {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 16px;
-  flex-wrap: wrap;
-}
 
-.gallery-img {
-  width: calc(50% - 6px);
-  max-width: 480px;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-}
 
-@media (max-width: 640px) {
-  .gallery-img {
-    width: 100%;
-  }
-}
 
 
 
