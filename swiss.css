@@ -1,9 +1,45 @@
 body{
     
-    background-image: url(pexels-manon-ridet-2157179082-34606112.jpg);
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+    background-image: url(pexels-denis-linine-214373-714256.jpg);
     background-repeat: no-repeat;
     background-size: cover;
-    background-position-x: center;} 
+    background-position-x: center;
+} 
+.topBar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 16px;
+  background: #fff;
+}
+
+.topBar .flag {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  display: block;
+}
+
+
+.topBar .heading {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.5rem; 
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.topBar .home {
+  margin: 0;
+  font-size: 1rem;
+}
+   
+
     
 
 
