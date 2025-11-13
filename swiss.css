@@ -73,7 +73,45 @@ body{
   padding: 10px;
 }
 
+.p1 .l1 {
+  margin: 50px;
+  padding: 20px;
+  background-color: thistle;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.p1 .l1 .img1{
+  width: 40%;
+  height: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.p1 .l1 .w{
+  font-family: serif;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: left;
 
+}
+.p1 .l1 .info{
+  font-family: serif;
+  line-height: 1.7;
+  color: #222;
+  margin-top: 8px;
+  font-size: 26px;
+}
+.p2 {
+  margin: 50px;
+  padding: 20px;
+  background-color: thistle;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
 
 
 
