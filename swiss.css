@@ -9,7 +9,7 @@ body{
     background-position-x: center;
 } 
 .topBar {
-  background-attachment: fixed;
+  
   position: relative;
   display: flex;
   align-items: center;
@@ -31,16 +31,21 @@ body{
   left: 50%;
   transform: translateX(-50%);
   margin: 0;
-  font-size: 4rem; 
+  font-size: 3rem; 
   font-weight: 700;
   letter-spacing: 1px;
   
 
 }
 .topBar .home {
+  background-color: deepskyblue;
+  padding: 6px 10px;
   margin: 0;
   font-size: 0.75rem;
+  border-radius: 12px;
 }
+
+
  
 .info .details {
   font-family: 'Merriweather', serif;
@@ -57,6 +62,17 @@ body{
   font-size: 28px;
   margin-bottom: 6px;
 }
+.mid .locations {
+  font-family: serif;
+  font-weight: 700;
+  font-size: 28px;
+  margin: 200px;
+  text-align: center;
+  background-color: thistle;
+  border-radius: 12px;
+  padding: 10px;
+}
+
 
 
 
