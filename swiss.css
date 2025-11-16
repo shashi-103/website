@@ -112,6 +112,42 @@ body{
   gap: 20px;
   align-items: center;
 }
+.p2 .img2{
+  width: 40%;
+  height: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.p2 .w{
+  font-family: serif;
+  font-weight: 700;
+  font-size: 30px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+.p2 .info{
+  font-family: serif;
+  line-height: 1.7;
+  color: #222;
+  margin-top: 8px;
+  font-size: 26px;
+}
+.p1 .l1 .info strong {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #000;
+  display: block;
+  margin-top: 12px;
+}
+.p2 .info strong {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #000;
+  display: block;
+  margin-top: 12px;
+}
+
+
 
 
 
