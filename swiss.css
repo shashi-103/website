@@ -3,20 +3,33 @@ body{
     margin: 0;
     font-family: Arial, Helvetica, sans-serif;
 
-    background-image: url(pexels-denis-linine-214373-714256.jpg);
+    background-image: url(imagestobeusedforJapanPage/picforswisshp.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: center;
 } 
 .topBar {
-  
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 8px 16px;
-  
 }
+
+
+.topBar .heading {
+  font-family: Arial, Helvetica, sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+
 
 .topBar .flag {
   width: 50px;
@@ -27,6 +40,8 @@ body{
 
 
 .topBar .heading {
+ 
+  font-family: Arial, Helvetica, sans-serif;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
@@ -37,6 +52,9 @@ body{
   
 
 }
+.topbar .me{
+  font-family: Arial, Helvetica, sans-serif;
+  }
 .topBar .home {
   background-color: deepskyblue;
   padding: 6px 10px;
@@ -46,21 +64,20 @@ body{
 }
 
 
- 
+.info .sub {
+  
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 28px;
+  margin-bottom: 6px;
+}
 .info .details {
+ 
   font-family: 'Merriweather', serif;
   line-height: 1.7;
   color: #222;
   margin-top: 8px;
   font-size: larger;
-}
-
-
-.info .sub {
-  font-family: 'Merriweather', serif;
-  font-weight: 700;
-  font-size: 28px;
-  margin-bottom: 6px;
 }
 .mid .locations {
   font-family: serif;
@@ -160,9 +177,166 @@ body{
 .p3 .title{
   font-family: serif;
   font-weight: 700;
-  font-size: 30px;
+  font-size: 50px;
   margin-bottom: 10px;
   color: white;
+}
+.p4 {
+  margin: 50px;
+  padding: 20px;
+  background-color: #333333;
+  border-radius: 12px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-direction: column;
+}
+.p4 .title{
+  font-family: serif;
+  font-weight: 700;
+  font-size: 50px;
+  margin-bottom: 10px;
+  color: white;
+}
+.airlines-section {
+    background-color: rgba(241, 235, 235, 0.836);
+    padding: 40px 0 80px 0;
+}
+
+.airlines-section .container3 {
+    padding: 0 80px;
+}
+.airlines-section h1 {
+    color: #000000;
+    margin: 5px;
+    margin-bottom: 50px;
+    font-size: 56px;
+    font-family: 'Courier New', Courier, monospace;
+}
+.airlines-section p{
+    color: #000000;
+    font-size: 28px;
+    margin-bottom: 50px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+
+.airlines-intro {
+    color: #000000;
+    margin-bottom: 20px;
+    font-size: 35px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.airlines-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    padding: 0;
+    margin: 0;
+}
+
+.airlines-list li a {
+    display: inline-block;
+    background: #333333;
+    padding: 12px 18px;
+    font-size: 21px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-family: myFont;
+}
+
+.airlines-list li a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+}
+iframe {
+  border-radius: 12px;
+  margin: 50px;
+}
+.footer {
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(241, 235, 235, 0.836);
+  color: #000;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 40px;
+}
+
+
+.p5 .small-table {
+  width: 60%;
+  max-width: 900px;
+  margin: 20px auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background-color: thistle;
+  border-radius: 18px;
+  font-size: 14px;
+  border: 1px solid black;
+  overflow: hidden; 
+}
+
+
+.p5 .small-table thead th,
+.p5 .small-table th,
+.p5 .small-table td {
+  background: inherit;
+}
+
+.p5 .small-table th,
+.p5 .small-table td {
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: #000 1px solid;
+
+  }
+
+.p5 .small-table thead th {
+  background: thistle;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.p5 .small-table ul {
+  margin: 0 0 8px 18px;
+  padding: 0;
+}
+
+.p5 .small-table li {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+
+.activityimg {
+  max-width: 600px;
+  height: 400px;
+  border-radius: 8px;
+  display: block;
+  margin-top: 8px;
+}
+
+
+.p5 .small-table th + th,
+.p5 .small-table td + td {
+  border-left: 1px solid black;
+  padding-left: 18px;
+}
+
+
+.p5 .small-table thead th:first-child,
+.p5 .small-table tbody td:first-child {
+  padding-right: 18px;
+}
+.p5 .small-table tbody tr:last-child td {
+  border-bottom: none;
 }
 
 
