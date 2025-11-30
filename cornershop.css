@@ -6,7 +6,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family: Arial, Helvetica, sans-serif;
-  background :#f5f5f5;
+  background:#f5f5f5;
   color:#222;
 }
 
@@ -46,22 +46,9 @@ body{
   max-width:1100px;
   margin: 24px auto;
   padding: 16px;
-  background: #ffffff;
+  background: #fff;
   border-radius:8px;
   box-shadow:0 6px 18px rgba(0,0,0,0.06);
-}
-
-/* Ensure the intro line and the "Meet the Team" title are white on a dark background */
-.content > p:first-of-type,
-.team-section h2 {
-  color: #ffffff;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-}
-
-/* optional: keep these elements readable if the content area has a dark background */
-.content,
-.team-section {
-  /* background-color: transparent;  remove/adjust if you have a dark bg */
 }
 
 /* Team cards styles */
@@ -80,48 +67,6 @@ body{
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 12px;
-}
-
-.cards .card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  background: #fff;
-  border-radius: 10px;
-  padding: 10px;
-  text-align: center;
-  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
-  transition: transform .15s ease, box-shadow .15s ease;
-  font-size: 0.9rem;
-}
-
-/* prevent the anchor's visited state from recoloring all text */
-.cards .card,
-.cards .card:visited {
-  color: inherit;
-}
-
-/* give non-name text fixed colors so they don't change with link states */
-.cards .card .role { color: #666; }
-.cards .card .bio  { color: #333; }
-
-/* only the name changes color on hover/focus/active */
-.cards .card .name {
-  color: #111;
-  transition: color .12s ease;
-}
-.cards .card:hover .name,
-.cards .card:focus .name,
-.cards .card:active .name {
-  color: #0077cc; /* adjust to your preferred accent color */
-}
-
-/* keep existing hover/focus effect for the whole card */
-.cards .card:hover,
-.cards .card:focus {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 22px rgba(0,0,0,0.09);
-  outline: none;
 }
 
 /* compact card */
@@ -177,36 +122,4 @@ body{
   .cards { gap: 8px; }
   .card { padding: 8px; }
 }
-
-/* responsive adjustments */
-@media (max-width: 768px){    
-  .corner-header{
-    height: 40vh;
-  }
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1024px){
-  .cards {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-  }
-}
-@media (min-width: 1025px) and (max-width: 1366px){
-  .cards {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
-  }
-}
-
-/* larger cards on bigger screens */
-@media (min-width: 1440px){
-  .avatar { width: 80px; height: 80px; }
-  .cards { gap: 16px; }
-  .card { padding: 12px; }
-}
-
 
