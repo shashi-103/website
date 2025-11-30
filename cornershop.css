@@ -13,7 +13,7 @@ body{
 /* header with background image (place image at the path below or update URL) */
 .corner-header{
   height: var(--header-height);
-  background-image: url("imagestobeusedforJapanPage/cornershop-bg.jpg");
+  background-image: url("noFilter.webp");
   background-size: cover;
   background-position: center;
   position: relative;
@@ -49,5 +49,77 @@ body{
   background: #fff;
   border-radius:8px;
   box-shadow:0 6px 18px rgba(0,0,0,0.06);
+}
+
+/* Team cards styles */
+.team-section {
+  margin-top: 24px;
+}
+
+.team-section h2 {
+  font-size: 1.4rem;
+  text-align: center;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+/* compact card */
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+  font-size: 0.9rem;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.09);
+}
+
+.avatar {
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0 auto 8px;
+  border: 2px solid rgba(0,0,0,0.06);
+}
+
+.name {
+  font-size: 1rem;
+  margin: 4px 0 2px;
+  font-weight: 700;
+}
+
+.role {
+  font-size: 0.78rem;
+  color: #666;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+  letter-spacing: .6px;
+}
+
+.bio {
+  font-size: 0.82rem;
+  color: #333;
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* smaller cards on very small screens */
+@media (max-width: 420px) {
+  .avatar { width: 60px; height: 60px; }
+  .cards { gap: 8px; }
+  .card { padding: 8px; }
 }
 
