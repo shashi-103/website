@@ -69,6 +69,48 @@ body{
   gap: 12px;
 }
 
+.cards .card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+  font-size: 0.9rem;
+}
+
+/* prevent the anchor's visited state from recoloring all text */
+.cards .card,
+.cards .card:visited {
+  color: inherit;
+}
+
+/* give non-name text fixed colors so they don't change with link states */
+.cards .card .role { color: #666; }
+.cards .card .bio  { color: #333; }
+
+/* only the name changes color on hover/focus/active */
+.cards .card .name {
+  color: #111;
+  transition: color .12s ease;
+}
+.cards .card:hover .name,
+.cards .card:focus .name,
+.cards .card:active .name {
+  color: #0077cc; /* adjust to your preferred accent color */
+}
+
+/* keep existing hover/focus effect for the whole card */
+.cards .card:hover,
+.cards .card:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.09);
+  outline: none;
+}
+
 /* compact card */
 .card {
   background: #fff;
