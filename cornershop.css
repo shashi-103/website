@@ -46,7 +46,7 @@ body{
   max-width:1100px;
   margin: 24px auto;
   padding: 16px;
-  background: #fff;
+  background: #000000;
   border-radius:8px;
   box-shadow:0 6px 18px rgba(0,0,0,0.06);
 }
@@ -153,4 +153,5 @@ body{
   .cards { gap: 16px; }
   .card { padding: 12px; }
 }
+
 
