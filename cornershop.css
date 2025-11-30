@@ -6,11 +6,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family: Arial, Helvetica, sans-serif;
-<<<<<<< HEAD
-  background:#f5f5f5;
-=======
-  background :#b6b6b6;
->>>>>>> 4efe792feec585279337870a0cd08ff8c6a5b0da
+    
   color:#222;
 }
 
@@ -50,11 +46,7 @@ body{
   max-width:1100px;
   margin: 24px auto;
   padding: 16px;
-<<<<<<< HEAD
-  background: #fff;
-=======
-  background: #7d7d7d;
->>>>>>> 4efe792feec585279337870a0cd08ff8c6a5b0da
+
   border-radius:8px;
   box-shadow:0 6px 18px rgba(0,0,0,0.06);
 }
@@ -129,5 +121,47 @@ body{
   .avatar { width: 60px; height: 60px; }
   .cards { gap: 8px; }
   .card { padding: 8px; }
+}
+
+.cards .card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: #fff;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.06);
+  transition: transform .15s ease, box-shadow .15s ease;
+  font-size: 0.9rem;
+}
+
+/* prevent the anchor's visited state from recoloring all text */
+.cards .card,
+.cards .card:visited {
+  color: inherit;
+}
+
+/* give non-name text fixed colors so they don't change with link states */
+.cards .card .role { color: #666; }
+.cards .card .bio  { color: #333; }
+
+/* only the name changes color on hover/focus/active */
+.cards .card .name {
+  color: #111;
+  transition: color .12s ease;
+}
+.cards .card:hover .name,
+.cards .card:focus .name,
+.cards .card:active .name {
+  color: #0077cc; /* adjust to your preferred accent color */
+}
+
+/* keep existing hover/focus effect for the whole card */
+.cards .card:hover,
+.cards .card:focus {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.09);
+  outline: none;
 }
 
