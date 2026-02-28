@@ -1,98 +1,463 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="cornershop.css" />
-    <title>Corner Shop</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Corner Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg:        #0a0a0f;
+      --surface:   #111118;
+      --card-bg:   #16161f;
+      --border:    rgba(255,255,255,0.07);
+      --accent:    #00e5ff;
+      --accent2:   #ff3cac;
+      --text:      #e8e8f0;
+      --muted:     #6b6b82;
+      --glow:      0 0 18px rgba(0,229,255,0.35);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── 67 PATTERN BACKGROUND ── */
+    #pattern-bg {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ensure content sits above pattern */
+    .corner-header, main.content { position: relative; z-index: 1; }
+
+    /* ── HEADER ── */
+    .corner-header {
+      position: relative;
+      height: 60vh;
+      min-height: 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .corner-header .bg-img {
+      position: absolute;
+      inset: 0;
+      background-image: url("noFilter.webp");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35) saturate(1.2);
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .corner-header:hover .bg-img { transform: scale(1); }
+
+    .corner-header .overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,10,15,0.1) 0%,
+        rgba(10,10,15,0.55) 70%,
+        var(--bg) 100%
+      );
+    }
+
+    /* glowing horizontal rule behind title */
+    .corner-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.6;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 1rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    .header-content h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      letter-spacing: 0.06em;
+      line-height: 1;
+      color: #fff;
+      text-shadow:
+        0 0 40px rgba(0,229,255,0.4),
+        0 0 80px rgba(0,229,255,0.15);
+    }
+
+    .header-content .tagline {
+      margin-top: 0.6rem;
+      font-size: clamp(0.85rem, 2vw, 1.05rem);
+      color: var(--muted);
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .header-content .tagline span {
+      color: var(--accent);
+    }
+
+    /* ── MAIN CONTENT ── */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 5rem;
+    }
+
+    /* ── INTRO ── */
+    .intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      animation: fadeUp 0.9s 0.15s ease both;
+    }
+
+    .intro p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--muted);
+    }
+
+    /* ── SECTION HEADER ── */
+    .team-section h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      letter-spacing: 0.1em;
+      text-align: center;
+      margin-bottom: 2.5rem;
+      color: var(--text);
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .team-section h2 .accent { color: var(--accent); }
+
+    /* ── CARDS GRID ── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+    }
+
+    @media (max-width: 1000px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .cards { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+    /* ── CARD ── */
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 14px 18px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      animation: fadeUp 0.7s ease both;
+    }
+
+    /* stagger card animations */
+    .card:nth-child(1)  { animation-delay: 0.05s }
+    .card:nth-child(2)  { animation-delay: 0.10s }
+    .card:nth-child(3)  { animation-delay: 0.15s }
+    .card:nth-child(4)  { animation-delay: 0.20s }
+    .card:nth-child(5)  { animation-delay: 0.25s }
+    .card:nth-child(6)  { animation-delay: 0.30s }
+    .card:nth-child(7)  { animation-delay: 0.35s }
+    .card:nth-child(8)  { animation-delay: 0.40s }
+    .card:nth-child(9)  { animation-delay: 0.45s }
+    .card:nth-child(10) { animation-delay: 0.50s }
+
+    /* subtle top glow line */
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 20%; right: 20%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(0,229,255,0.3);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.5), var(--glow);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    /* ── AVATAR ── */
+    .avatar-wrap {
+      position: relative;
+      margin-bottom: 12px;
+    }
+
+    .avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      border: 2px solid var(--border);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      background: var(--surface);
+    }
+
+    .card:hover .avatar {
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0,229,255,0.4);
+    }
+
+    /* number badge */
+    .badge {
+      position: absolute;
+      bottom: -2px;
+      right: -4px;
+      background: var(--accent);
+      color: #000;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      border-radius: 99px;
+      padding: 1px 5px;
+      line-height: 1.6;
+    }
+
+    /* ── TEXT ── */
+    .name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      color: #fff;
+      margin-bottom: 2px;
+      transition: color 0.15s;
+    }
+
+    .card:hover .name { color: var(--accent); }
+
+    .role {
+      font-size: 0.68rem;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .bio {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    /* ── FOOTER LINE ── */
+    .footer-line {
+      margin-top: 5rem;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 <body>
+
+  <canvas id="pattern-bg"></canvas>
+
   <header class="corner-header">
-    <div class="overlay">
-      <h1>CORNER SHOP</h1>
+    <div class="bg-img"></div>
+    <div class="overlay"></div>
+    <div class="header-content">
+      <h1>Corner Shop</h1>
+      <p class="tagline">10 Streamers &nbsp;·&nbsp; <span>Open 24/7</span> &nbsp;·&nbsp; Pure Chaos</p>
     </div>
   </header>
 
   <main class="content">
-    <p>Welcome to Corner Shop!
-A squad of 10 streamers bringing chaos, energy, and nonstop fun to every stream. Gaming, laughs, and wild moments—open 24/7 for good vibes.</p>
 
-    <!-- Team cards: 10 small member cards -->
+    <div class="intro">
+      <p>A squad of 10 streamers bringing chaos, energy, and nonstop fun to every stream. Gaming, laughs, and wild moments — always live, always unfiltered.</p>
+    </div>
+
     <section class="team-section">
-      <h2>Meet the Team</h2>
+      <h2>Meet the <span class="accent">Squad</span></h2>
+
       <div class="cards">
+
         <a class="card" href="https://example.com/amitesh" target="_blank" rel="noopener noreferrer">
-          <img src="imagestobeusedforJapanPage/member1.jpg"  class="avatar">
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member1.jpg" class="avatar" alt="Amitesh">
+            <span class="badge">01</span>
+          </div>
           <h3 class="name">Amitesh</h3>
-          <p class="role">AKA Tesher67</p>
-          <p class="bio">the “perfect human being,” future employer, and the one everyone low-key expects to run the world someday.</p>
+          <p class="role">Tesher67</p>
+          <p class="bio">the "perfect human being," future employer, and the one everyone low-key expects to run the world someday.</p>
         </a>
 
         <a class="card" href="https://www.twitch.tv/pab1oz_67" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member2.jpg"  class="avatar">
-           <h3 class="name">Hasan</h3>
-           <p class="role">AKA Pab1oz_67</p>
-           <p class="bio">undisputed 8-ball pool king and professional upper deck user.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member2.jpg" class="avatar" alt="Hasan">
+            <span class="badge">02</span>
+          </div>
+          <h3 class="name">Hasan</h3>
+          <p class="role">Pab1oz_67</p>
+          <p class="bio">undisputed 8-ball pool king and professional upper deck user.</p>
         </a>
 
         <a class="card" href="https://www.twitch.tv/sssssushi67" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member3.jpg"  class="avatar">
-           <h3 class="name">Shashikant</h3>
-           <p class="role">AKA Ssssushu67</p>
-           <p class="bio">brilliant, lazy beyond reason, but hopelessly loyal to the group.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member3.jpg" class="avatar" alt="Shashikant">
+            <span class="badge">03</span>
+          </div>
+          <h3 class="name">Shashikant</h3>
+          <p class="role">Ssssushu67</p>
+          <p class="bio">brilliant, lazy beyond reason, but hopelessly loyal to the group.</p>
         </a>
 
         <a class="card" href="https://example.com/jack" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member4.jpg"  class="avatar">
-           <h3 class="name">Jack</h3>
-           <p class="role">AKA Blackjack67</p>
-           <p class="bio">Advaith’s spiritual twin; together they form a two-man natural disaster.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member4.jpg" class="avatar" alt="Jack">
+            <span class="badge">04</span>
+          </div>
+          <h3 class="name">Jack</h3>
+          <p class="role">Blackjack67</p>
+          <p class="bio">Advaith's spiritual twin; together they form a two-man natural disaster.</p>
         </a>
 
         <a class="card" href="https://example.com/advaith" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member5.jpg"  class="avatar">
-           <h3 class="name">Advaith</h3>
-           <p class="role">AKA Advaithinio_67</p>
-           <p class="bio">the 67-meme connoisseur with zero social anxiety and unlimited hype.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member5.jpg" class="avatar" alt="Advaith">
+            <span class="badge">05</span>
+          </div>
+          <h3 class="name">Advaith</h3>
+          <p class="role">Advaithinio_67</p>
+          <p class="bio">the 67-meme connoisseur with zero social anxiety and unlimited hype.</p>
         </a>
 
         <a class="card" href="https://www.twitch.tv/maydayy911" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member6.jpg"  class="avatar">
-           <h3 class="name">Mehede</h3>
-           <p class="role">AKA Mayday91167</p>
-           <p class="bio">the self-declared “predator” of the group, a chaotic 25-year-old energy source.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member6.jpg" class="avatar" alt="Mehede">
+            <span class="badge">06</span>
+          </div>
+          <h3 class="name">Mehede</h3>
+          <p class="role">Mayday91167</p>
+          <p class="bio">the self-declared "predator" of the group, a chaotic 25-year-old energy source.</p>
         </a>
 
         <a class="card" href="https://example.com/oisin" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member7.jpg" class="avatar">
-           <h3 class="name">Oisin</h3>
-           <p class="role">AKA Gazza67</p>
-           <p class="bio">the bear of the group: big presence, chill vibes, and terrifyingly smart without even trying.LOVESS drinkinggg </p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member7.jpg" class="avatar" alt="Oisin">
+            <span class="badge">07</span>
+          </div>
+          <h3 class="name">Oisin</h3>
+          <p class="role">Gazza67</p>
+          <p class="bio">the bear of the group: big presence, chill vibes, and terrifyingly smart without even trying.</p>
         </a>
 
         <a class="card" href="https://example.com/mishel" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member8.jpg" class="avatar">
-           <h3 class="name">Mishel</h3>
-           <p class="role">AKA BrownThomas67</p>
-           <p class="bio">dyslexic, smart, confused, and unintentionally iconic.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member8.jpg" class="avatar" alt="Mishel">
+            <span class="badge">08</span>
+          </div>
+          <h3 class="name">Mishel</h3>
+          <p class="role">BrownThomas67</p>
+          <p class="bio">dyslexic, smart, confused, and unintentionally iconic.</p>
         </a>
 
         <a class="card" href="https://www.twitch.tv/ayycee67" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member9.jpg"  class="avatar">
-           <h3 class="name">Milan</h3>
-           <p class="role">AKA Ayycee67</p>
-           <p class="bio">effortlessly loved by everyone and vibing through life like a background song that always hits.BIG behind.
-           </p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member9.jpg" class="avatar" alt="Milan">
+            <span class="badge">09</span>
+          </div>
+          <h3 class="name">Milan</h3>
+          <p class="role">Ayycee67</p>
+          <p class="bio">effortlessly loved by everyone, vibing through life like a background song that always hits.</p>
         </a>
 
         <a class="card" href="https://www.twitch.tv/fortnitebrian67" target="_blank" rel="noopener noreferrer">
-           <img src="imagestobeusedforJapanPage/member10.jpg"  class="avatar">
-           <h3 class="name">Brian</h3>
-           <p class="role">AKA forniteBrian67</p>
-           <p class="bio">the most locked-in grinder alive; man works like sleep was never invented.</p>
+          <div class="avatar-wrap">
+            <img src="imagestobeusedforJapanPage/member10.jpg" class="avatar" alt="Brian">
+            <span class="badge">10</span>
+          </div>
+          <h3 class="name">Brian</h3>
+          <p class="role">fortniteBrian67</p>
+          <p class="bio">the most locked-in grinder alive; man works like sleep was never invented.</p>
         </a>
+
       </div>
     </section>
+
+    <p class="footer-line">Corner Shop &nbsp;·&nbsp; Est. 2024 &nbsp;·&nbsp; Always Open</p>
+
   </main>
+
+  <script>
+    const canvas = document.getElementById('pattern-bg');
+    const ctx = canvas.getContext('2d');
+
+    function drawPattern() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const step = 90;
+      ctx.save();
+      ctx.font = '900 52px "Arial Black", Arial, sans-serif';
+      ctx.fillStyle = 'rgba(0, 229, 255, 0.22)';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+
+      for (let row = -1; row * step < canvas.height + step; row++) {
+        for (let col = -1; col * step < canvas.width + step; col++) {
+          const x = col * step + (row % 2 === 0 ? 0 : step / 2);
+          const y = row * step;
+          ctx.save();
+          ctx.translate(x, y);
+          ctx.rotate(-25 * Math.PI / 180);
+          ctx.fillText('67', 0, 0);
+          ctx.restore();
+        }
+      }
+      ctx.restore();
+    }
+
+    drawPattern();
+    window.addEventListener('resize', drawPattern);
+  </script>
+
 </body>
 </html>
